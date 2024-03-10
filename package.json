@@ -28,6 +28,7 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/mongoose": "^9.2.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^7.3.0",
     "aws-sdk": "^2.1202.0",
     "axios": "^0.27.2",
     "mongoose": "^6.5.3",
@@ -37,6 +38,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
+    "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1",
     "webpack": "^5.74.0"
   },

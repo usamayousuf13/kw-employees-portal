@@ -1,12 +1,29 @@
 // src/users/users.controller.ts
 
 import { Controller, Post, Body, Param, Query } from '@nestjs/common';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiBody,
+} from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginDto } from './dto/login.dto';
+
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @ApiOperation({ summary: 'Register a new user' })
+  @ApiCreatedResponse({ description: 'User registered successfully' })
+  @ApiBadRequestResponse({
+    description: 'Invalid invitation token or Bad Request',
+  })
+  @ApiBody({ type: CreateUserDto })
   @Post('register')
   async register(
     @Body() createUserDto: CreateUserDto,
@@ -26,15 +43,31 @@ export class UsersController {
     return { message: 'User registered successfully', user };
   }
 
+  @ApiOperation({ summary: 'Login with username and password' })
+  @ApiResponse({ status: 200, description: 'Login successful' })
+  @ApiResponse({
+    status: 400,
+    description: 'Invalid credentials or Bad Request',
+  })
+  @ApiBody({ type: LoginDto })
   @Post('login')
-  async login(@Body() { username, password }): Promise<any> {
-    const user = await this.usersService.login(username, password);
+  async login(@Body() loginDto: LoginDto): Promise<any> {
+    const user = await this.usersService.login(
+      loginDto.username,
+      loginDto.password,
+    );
 
     if (!user) {
       return { message: 'Invalid credentials' };
     }
     return { message: 'Login successful', user };
   }
+
+  @ApiOperation({ summary: 'Send an invitation to register' })
+  @ApiCreatedResponse({ description: 'Invitation sent successfully' })
+  @ApiBadRequestResponse({
+    description: 'User not found or User not allowed to send invite',
+  })
   @Post('send-invite/:username')
   async sendInvite(@Param('username') username: string): Promise<any> {
     const existingUser = await this.usersService.findByUsername(username);
