@@ -1,4 +1,3 @@
-// userService.ts
 import axios from 'axios';
 import { ApiResponse } from '../types/user';
 

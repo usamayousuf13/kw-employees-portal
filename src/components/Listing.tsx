@@ -1,10 +1,10 @@
-// Listing.tsx
 import React, { useState, useEffect } from 'react';
 import {
     MagnifyingGlassIcon,
     ChevronUpDownIcon,
 } from "@heroicons/react/24/outline";
 import { PencilIcon } from "@heroicons/react/24/solid";
+import { useNavigate, Outlet } from 'react-router-dom';
 import {
     Card,
     CardHeader,
@@ -24,7 +24,6 @@ import { User } from '../types/user';
 import { LISTING } from '../constants/constants';
 
 interface ListingProps {
-    // Add any other props you need
 }
 
 const Listing: React.FC<ListingProps> = () => {
@@ -34,6 +33,7 @@ const Listing: React.FC<ListingProps> = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [currentPage, setCurrentPage] = useState<number>(1);
     const resultsPerPage = LISTING.RESULTS_PER_PAGE; // Adjust this value based on your API response
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch data from API and set it to the state
@@ -56,10 +56,12 @@ const Listing: React.FC<ListingProps> = () => {
         let filteredData = users;
 
         if (genderFilter) {
+            console.log("genderFilter", genderFilter);
             filteredData = filteredData.filter((user) => user.gender === genderFilter);
         }
 
         if (searchTerm) {
+            console.log("searchTerm", searchTerm);
             filteredData = filteredData.filter((user) =>
                 `${user.name.title} ${user.name.first} ${user.name.last}`
                     .toLowerCase()
@@ -85,6 +87,12 @@ const Listing: React.FC<ListingProps> = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
 
+    const handleEditUser = (user: User) => {
+        return function() {
+            navigate(`/user-profile/${encodeURIComponent(JSON.stringify(user))}`);
+        }
+    };
+
     return (
         <div>
             <Card className="h-full w-full">
@@ -100,7 +108,7 @@ const Listing: React.FC<ListingProps> = () => {
                         </div>
                     </div>
                     <div className="flex flex-col items-center gap-4 md:flex-row">
-                        <div className="w-full md:w-72 relative">
+                        <div className="w-full md:w-72">
                             <Select
                                 label="Select Gender"
                                 value={genderFilter}
@@ -209,7 +217,7 @@ const Listing: React.FC<ListingProps> = () => {
                                             </td>
                                             <td className={classes}>
                                                 <Tooltip content="Edit User">
-                                                    <IconButton variant="text">
+                                                    <IconButton variant="text" onClick={handleEditUser(currentUsers[index])}>
                                                         <PencilIcon className="h-4 w-4" />
                                                     </IconButton>
                                                 </Tooltip>
@@ -227,17 +235,18 @@ const Listing: React.FC<ListingProps> = () => {
                     </Typography>
                     <div className="flex gap-2">
                         <Button onClick={handlePrevPage}
-                    disabled={currentPage === 1}
-                    variant="outlined" size="sm">
+                            disabled={currentPage === 1}
+                            variant="outlined" size="sm">
                             Previous
                         </Button>
                         <Button variant="outlined" size="sm" onClick={handleNextPage}
-                    disabled={currentPage === totalPages}>
+                            disabled={currentPage === totalPages}>
                             Next
                         </Button>
                     </div>
                 </CardFooter>
             </Card>
+            <Outlet />
         </div>
     );
 };

@@ -1,4 +1,3 @@
-// types.ts
 export interface User {
     gender: string;
     name: {
