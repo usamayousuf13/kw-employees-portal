@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+# kw-employees-portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An employees portal app that fetches employees from random api. Uses ReactJS with typescript and tailwind css with UI toolkit of material-tailwind
 
-## Available Scripts
+I have used [Create React App](https://github.com/facebook/create-react-app). to bootstrap this project
 
-In the project directory, you can run:
+## Pre-requisites
 
-### `npm start`
+* Make sure you have latest version of nodejs installed on your system (https://nodejs.org/en/download/)
+* Any code editor, I prefer using VScode
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## Run the app
+
+```npm start```
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Create a build 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+```npm run build```
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project Structure takeaways
 
-### `npm run eject`
+* All application code resides in /src directory
+* 'src/components' have separate files for each component of application
+* 'src/constants' have a constant file that contain overall application constants
+* 'src/service' contains APIs called using Axios.
+* 'src/styles' have tailwind.css which is not quite used in this project, since material-tailwind UI toolkit does all the styling
+* 'src/types' have user type defined 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Notes and thought process
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* I have tried to make project structure simple and self explanatory, so that it can provide a clear sense of the direction
+* I have tried to fullfil all the requirements that were listed in coding challenge, but there is always room for improvement
+* Listing component is very large and I understand that it can be split into smaller components which will increase readablity and reusability of code. Due to limited time and the fact that this is a coding challenge that wouldn't be used later, I am ignoring it.
+* I have used params to pass selected user object from parent (Listing) to child component (UserProfile). I understand this is not the best approach and redux store should be used here, but due to limited time, I choose this method of implementation
+* Gender select dropdown has some minor CSS issue
+* Unit tests are missing but we can use Jest testing framework
+* File naming conventions are used throughout the project and are made consistent everywhere
+* Overall I have put my efforts in this coding challenge and would love to hear feedback about it :) 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

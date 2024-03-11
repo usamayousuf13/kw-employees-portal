@@ -32,7 +32,7 @@ const Listing: React.FC<ListingProps> = () => {
     const [genderFilter, setGenderFilter] = useState<string | undefined>(undefined);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const resultsPerPage = LISTING.RESULTS_PER_PAGE; // Adjust this value based on your API response
+    const resultsPerPage = LISTING.RESULTS_PER_PAGE;
     const navigate = useNavigate();
 
     useEffect(() => {
