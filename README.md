@@ -88,3 +88,19 @@ $ npm run start:prod
 * I have tried to make the project structure simple and self-explanatory, and also followed best practices and recommended packages of nestJS
 * Would love to hear feedback about it :)
 
+
+### Application Flow
+
+* Admin user will be created in DB when seed script is executed
+* Admin user can login using /users/login api 
+* Password is not encrypted and is stored in simple text format. Bcrypt or crypto npm packages can be used to secure passwords
+* /users/login is a simple API that matches username and password provided in req.body
+* /users/send-invite/:username API can be used to generate a new invite token. It returns token as a response which can be used to register new user
+* Without invitation token new user cannot be registered (Sign-ups should be Invite-only)
+* /users/send-invite/:username API can only be used by a user with role=Admin. Other roles wouldn't be able to send invite
+* /users/register?invitationToken=token API is used to register a new user. Takes invitation token as a query param and user object in req.body
+* invitation token have an expiration period of 1 hour which is also validated in /users/register API
+* 'b. Resending the invite should reset the expiration date.' - Not implemented due to separate invites collection and option to create multiple invites by a single admin
+* /tasks have all CRUD Operations 
+* GET /tasks:username API takes offset and limit as params to be used for pagination. Username is used to fetch selected user's tasks
+
