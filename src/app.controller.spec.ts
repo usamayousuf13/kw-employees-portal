@@ -1,20 +1,26 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { WeatherController } from './weather/weather.controller';
-import { WeatherService } from './weather/weather.service';
+/*
+  Due to limited time, unit and integration tests are not covered.
+*/
 
-describe('WeatherController', () => {
-  let weatherController: WeatherController;
+import { Test, TestingModule } from '@nestjs/testing';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
+
+describe('UsersController', () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let usersController: UsersController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [WeatherController],
-      providers: [WeatherService],
+      controllers: [UsersController],
+      providers: [UsersService],
     }).compile();
 
-    weatherController = app.get<WeatherController>(WeatherController);
+    usersController = app.get<UsersController>(UsersController);
   });
 
   describe('root', () => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     it('should return "Hello World!"', () => {});
   });
 });

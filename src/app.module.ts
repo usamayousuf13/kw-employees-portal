@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { WeatherModule } from './weather/weather.module';
+import * as path from 'path';
 import { UserModule } from './users/users.module';
 import { TasksModule } from './tasks/tasks.module';
 import { ConfigModule } from '@nestjs/config';
@@ -15,12 +15,12 @@ import constant from './util/constant';
     LoggerModule.forRoot({
       pinoHttp: {
         transport: {
-          target: 'pino-pretty',
+          target: 'pino/file',
+          options: { destination: path.join(process.cwd(), 'app.log') },
         },
       },
     }),
     MongooseModule.forRoot(process.env.MONGO_URL),
-    WeatherModule,
     UserModule,
     TasksModule,
   ],

@@ -23,7 +23,6 @@ export class UsersService {
   }
 
   async findByUsername(username: string): Promise<User | null> {
-    console.log(username);
     return this.userModel.findOne({ username }).exec();
   }
 

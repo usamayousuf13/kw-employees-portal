@@ -71,8 +71,6 @@ export class UsersController {
   @Post('send-invite/:username')
   async sendInvite(@Param('username') username: string): Promise<any> {
     const existingUser = await this.usersService.findByUsername(username);
-    console.log('existing: ', existingUser);
-
     if (!existingUser || existingUser.role !== 'Admin') {
       return {
         message: !existingUser
@@ -87,8 +85,6 @@ export class UsersController {
       username,
       expiration,
     );
-
-    console.log(`Invitation sent successfully for ${invite}`);
     return {
       message: `Invitation sent successfully. Invitation code: ${invite.token}`,
     };
