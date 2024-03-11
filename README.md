@@ -11,6 +11,7 @@ This project has two branches
 ``` git checkout backend```
 
 * You will find more details about each project in the respective readme files once you checkout to your desired branch
+* Please delete node_modules and dist folder (if exists) and package-lock.json after you checkout from frontend branch to backend branch or vice versa
 
 
 
