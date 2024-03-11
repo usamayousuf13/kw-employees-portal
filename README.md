@@ -1,6 +1,6 @@
 # kw-employees-portal
 
-An employees portal app that fetches employees from random api. Uses ReactJS with typescript and tailwind css with UI toolkit of material-tailwind
+An employees portal that fetches employees from random api. Uses ReactJS with typescript and tailwind css using UI toolkit material-tailwind
 
 I have used [Create React App](https://github.com/facebook/create-react-app). to bootstrap this project
 
