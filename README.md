@@ -1,6 +1,6 @@
 # kw-todo-app
 
-#### A todo tasks management app with role based user controls. Uses NestJS with typescript as backend-app framework and MongoDB as primary database
+A todo tasks management app with role based user controls. Uses NestJS with typescript as backend-app framework and MongoDB as primary database
 
 ### DISCLAIMER:
 I have used a NestJS boilerplate that I created a couple of years back. Read more about it in my medium article:
@@ -47,7 +47,7 @@ $ npm run seed
     "role": "Admin",
 }
 ```
-* Currently it just create a new user in DB, validation and error handling can be done later on
+* Currently it just create a new user in DB, validation and error handling can be done later
 
 ## Running the app
 
@@ -79,7 +79,7 @@ $ npm run start:prod
 
 ### Notes and thought process
 
-* I have tried to fullfil all the requirements that were listed in coding challenge, but you might see <any> type in code somewhere. I acknowledge it and they are left due to time constraint. 
+* I have tried to fullfil all the requirements that were listed in coding challenge, but you might see 'any' type in code somewhere. I acknowledge it and they are left due to time constraint. 
 * I have integrated Pino logger, its a light weight, easy to use, JSON and ElasticSearch compatible logger for nodejs. Also its my favorite ;)
 * Separate Environments for prod and dev can be configured later
 * Unit and integration tests are missing but we can use Jest with SuperTest, which is recommended by nestJS
